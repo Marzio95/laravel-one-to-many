@@ -12242,3 +12242,17 @@ tr a {
   line-height: 3rem;
 }
 
+.my_btn_link {
+  border: none;
+  background-color: transparent;
+  color: blue;
+}
+
+.my_btn_link:hover {
+  color: #2a73b0;
+}
+
+td .my_btn_link {
+  margin: 0 0 0 0;
+}
+

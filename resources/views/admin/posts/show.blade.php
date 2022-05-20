@@ -7,11 +7,18 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $post->title }}</h5>
                 <p class="card-text mb-3">{{ $post->postText }}.</p>
-                <a class="tasto_show bg-green mt-3" href="{{ route('admin.posts.edit', $post->slug) }}">Modifica Post</a>
+                <h5 class="card-title">{{ $post->user->name }}</h5>
+                {{-- <h5 class="card-title">{{ $post->user->userInfo->phone_number }}</h5> --}}
 
+                @if (Auth::user()->id === $post->user_id)
+                    <a class="tasto_show bg-green mt-3" href="{{ route('admin.posts.edit', $post->slug) }}">Modifica
+                        Post</a>
+                @endif
 
-                <button data-id="{{ $post->slug }}" onclick="event.stopPropagation()"
-                    class="btn-delete bg-danger text-white p-1 mt-4">ELIMINA POST</button>
+                @if (Auth::user()->id === $post->user_id)
+                    <button data-id="{{ $post->slug }}" onclick="event.stopPropagation()"
+                        class="btn-delete bg-danger text-white p-1 mt-4">ELIMINA POST</button>
+                @endif
             </div>
         </div>
 
