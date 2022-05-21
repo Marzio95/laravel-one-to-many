@@ -12256,3 +12256,8 @@ td .my_btn_link {
   margin: 0 0 0 0;
 }
 
+.card-body h3,
+.card-body .h3 {
+  font-weight: bold;
+}
+

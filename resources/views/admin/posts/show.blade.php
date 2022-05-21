@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-center align-items-center flex-column">
         <div class="card m-5" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">{{ $post->title }}</h5>
+                <h3 class="card-title text-uppercase">{{ $post->title }}</h3>
                 <p class="card-text mb-3">{{ $post->postText }}.</p>
                 <h5 class="card-title">{{ $post->user->name }}</h5>
                 {{-- <h5 class="card-title">{{ $post->user->userInfo->phone_number }}</h5> --}}
