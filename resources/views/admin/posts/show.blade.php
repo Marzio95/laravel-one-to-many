@@ -30,6 +30,12 @@
                 <a class="text-white bg-black p-2" href="{{ route('admin.posts.index', 'PostController') }}">Torna alla
                     lista</a>
             </div>
+            @if (Auth::user()->id === $post->user_id)
+                <div class="m-5">
+                    <a class="text-white bg-black p-2" href="{{ route('admin.myposts') }}">Torna
+                        ai miei Posts</a>
+                </div>
+            @endif
         </div>
 
         <section id="confirmation-overlay" class="overlay d-none">
