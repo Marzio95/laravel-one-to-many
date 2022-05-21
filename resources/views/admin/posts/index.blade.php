@@ -6,6 +6,13 @@
 @section('pageMain')
 
     <body>
+        @if (session('deletd'))
+            <div class="alert alert-warning">{{ session('deletd') }}</div>
+        @endif
+
+        @if (session('status'))
+            <div class="alert alert-success">{{ session('status') }}</div>
+        @endif
         <table class="table table-striped table-hover">
             <thead>
                 <tr>

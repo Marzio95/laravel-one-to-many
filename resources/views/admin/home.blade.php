@@ -19,8 +19,11 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-evenly">
             <a class="mybtn_list" href="{{ route('admin.posts.index') }}">Listing Posts</a>
+            <a class="mybtn_list bg-primary" href="{{ route('admin.posts.create') }}">Create Post</a>
+            <a class="mybtn_list bg-danger" href="{{ route('admin.myposts') }}">My Posts</a>
+
         </div>
     </div>
 @endsection

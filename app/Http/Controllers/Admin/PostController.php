@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
+    public function myindex()
+    {
+        $posts = Post::where('user_id', Auth::user()->id)->paginate(20);
+        return view('admin.posts.index', compact('posts'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +50,7 @@ class PostController extends Controller
             'slug' => 'required',
         ]);
 
-        $formData = $request->all();
+        $formData = $request->all() + ['user_id' => Auth::user()->id];
         $newPost = Post::create($formData);
         return redirect()->route('admin.posts.show', $newPost->slug);
     }
@@ -71,7 +77,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        if (Auth::user()->id === $post->user_id) {
+            return view('admin.posts.edit', compact('post'));
+        }
+        abort(403);
     }
 
     /**
@@ -103,7 +112,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if (Auth::user()->id !== $post->user_id) abort(403);
+
         $post->delete();
-        return redirect()->route('admin.posts.index');
+
+        if (url()->previous() === route('admin.posts.edit', $post->slug)) {
+            return redirect()->route('admin.home')->with('status', "Post $post->title deleted");
+        }
+        return redirect(url()->previous())->with('status', 'Profile updated!');
     }
 }
