@@ -36,4 +36,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function categories()
+    {
+        return $this->belongsTo('App\Category');
+    }
 }

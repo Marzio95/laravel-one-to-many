@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Post;
 use App\User;
+use App\Category;
 
 class PostSeeder extends Seeder
 {
@@ -21,6 +22,7 @@ class PostSeeder extends Seeder
                 'title' => $title,
                 'postText' => $faker->text(rand(100, 500)),
                 'slug' => Post::createSlug($title),
+                'category_id' => Category::inRandomOrder()->first()->id,
             ]);
         }
     }

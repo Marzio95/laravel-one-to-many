@@ -32,7 +32,7 @@ class UpdateForeignKey extends Migration
         Schema::table('posts', function (Blueprint $table) {
             $table->string('title', 30)->change();
             $table->text('postText', 1000)->change();
-            $table->string('slug')->unique()->change();
+            // $table->string('slug')->unique()->change();
         });
     }
 }

@@ -119,6 +119,9 @@ class PostController extends Controller
         if (url()->previous() === route('admin.posts.edit', $post->slug)) {
             return redirect()->route('admin.home')->with('status', "Post $post->title deleted");
         }
+        if (url()->previous() === route('admin.posts.show', $post->slug)) {
+            return redirect()->route('admin.home')->with('status', "Post $post->title deleted");
+        }
         return redirect(url()->previous())->with('status', 'Profile updated!');
     }
 }

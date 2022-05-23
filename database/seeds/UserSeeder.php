@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 use Faker\Generator as Faker;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -17,7 +19,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => $faker->name(),
                 'email' => $faker->email(),
-                'password' => $faker->password(),
+                'password' => Hash::make('asdfasdf'),
             ]);
         }
     }

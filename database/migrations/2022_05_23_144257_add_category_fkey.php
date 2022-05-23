@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ModifyAttributeColums extends Migration
+class AddCategoryFkey extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,11 @@ class ModifyAttributeColums extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('title', 30)->change();
-            $table->text('postText', 1000)->change();
-            // $table->string('slug')->unique()->change();
+            $table->unsignedBigInteger('category_id')->nullable();
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories');
         });
     }
 
@@ -28,9 +30,8 @@ class ModifyAttributeColums extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            // $table->string('title', 20);
-            // $table->text('postText');
-            // $table->string('slug');
+            $table->dropForeign(['category_id']);
+            // $table->dropColumn('category_id');
         });
     }
 }
