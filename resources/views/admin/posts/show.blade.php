@@ -8,8 +8,8 @@
                 <h3 class="card-title text-uppercase">{{ $post->title }}</h3>
                 <p class="card-text mb-3">{{ $post->postText }}.</p>
                 <h5 class="card-title">{{ $post->user->name }}</h5>
-                {{-- <h5 class="card-title">{{ $post->user->userinfo->phone_number }}</h5> --}}
-
+                <h5 class="card-title">{{ $post->user->userInfo->phone_number }}</h5>
+                <h5 class="card-title">{{ $post->Category->name }}</h5>
                 @if (Auth::user()->id === $post->user_id)
                     <a class="tasto_show bg-green mt-3" href="{{ route('admin.posts.edit', $post->slug) }}">Modifica
                         Post</a>

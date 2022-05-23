@@ -29,6 +29,13 @@
             </div>
         </div>
 
+        <select name="category" id="category">
+            <option value="">Selecet a Category</option>
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+
         <div class="form-group row mt-3 mb-3">
             <div class="col-4">
                 <input class="btn-slugger" type="button" value="Genera il tuo slug">
