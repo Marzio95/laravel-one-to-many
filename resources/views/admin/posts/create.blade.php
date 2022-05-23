@@ -29,12 +29,16 @@
             </div>
         </div>
 
-        <select name="category" id="category">
-            <option value="">Selecet a Category</option>
+        <select class="mt-3 mb-3" name="category_id" id="category_id">
+            <option selected value="">Select a Category</option>
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <option value="{{ $category->id }}">
+                    {{ $category->name }}</option>
             @endforeach
         </select>
+        @error('category')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
         <div class="form-group row mt-3 mb-3">
             <div class="col-4">

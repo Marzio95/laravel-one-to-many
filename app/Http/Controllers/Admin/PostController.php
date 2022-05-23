@@ -50,6 +50,7 @@ class PostController extends Controller
             'title' => 'required|unique:posts|max:20',
             'postText' => 'required|max:500',
             'slug' => 'required',
+            'category_id' => 'required|exists:App\Category,id',
         ]);
 
         $formData = $request->all() + ['user_id' => Auth::user()->id];
