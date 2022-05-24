@@ -44,7 +44,7 @@ class CategoryController extends Controller
 
         $formData = $request->all();
         $newCategory = Category::create($formData);
-        return redirect()->route('admin.category.show', $newCategory);
+        return redirect()->route('admin.categories.show', $newCategory);
     }
 
     /**
@@ -99,7 +99,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $category->posts()->detach();
         $category->delete();
-        return view('admin.categories.index');
+        return view('admin.category.index');
     }
 }

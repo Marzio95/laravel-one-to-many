@@ -6,6 +6,7 @@
 @section('pageMain')
 
     <body>
+        <div class="text-center m-5"><a href="{{ route('admin.categories.create') }}">Create Category</a></div>
         @if (session('deletd'))
             <div class="alert alert-warning">{{ session('deletd') }}</div>
         @endif
