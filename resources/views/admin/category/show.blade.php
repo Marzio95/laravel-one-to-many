@@ -7,7 +7,7 @@
             <div class="card-body" style="text-align:center;">
                 <span class="m-4">Categoria:</span>
                 <h3 class="card-title text-uppercase d-inline-block">{{ $category->name }}</h3>
-                <h5 class="card-title m-4">Descrizione: {{ $category->description }}</h5>
+                <h5 class="card-title m-4">Descrizione: {{ $category->descrption }}</h5>
                 {{-- @if (Auth::user()->id === $category->user_id) --}}
                 <a class="tasto_show bg-green mt-3" href="{{ route('admin.categories.edit', $category->id) }}">Modifica
                     categoria</a>

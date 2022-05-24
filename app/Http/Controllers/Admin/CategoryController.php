@@ -69,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.edit');
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -88,7 +88,7 @@ class CategoryController extends Controller
 
         $formData = $request->all();
         $category->update($formData);
-        return redirect()->route('admin.category.show');
+        return redirect()->route('admin.categories.show', $category->id);
     }
 
     /**
