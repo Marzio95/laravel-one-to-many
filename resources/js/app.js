@@ -52,6 +52,21 @@ document.querySelector('.body').addEventListener('click', function() {
 });
 }
 
+const confirmationOverlay2 = document.getElementById('confirmation-overlay');
+if (confirmationOverlay2){
+const confirmationForm2 = confirmationOverlay2.querySelector('form');
+
+document.querySelectorAll('.btn-delete').forEach(element=> {
+    element.addEventListener('click', function(){
+        confirmationOverlay2.classList.remove('d-none');
+        confirmationForm2.action = confirmationForm2.dataset.base + '/' + this.dataset.id;
+    });
+});
+document.querySelector('.body').addEventListener('click', function() {
+    confirmationForm2.action = '';
+    confirmationOverlay2.classList.add('d-none');
+});
+}
 
 
 // FUNZIONE SLUG

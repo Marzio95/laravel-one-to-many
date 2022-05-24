@@ -13,42 +13,31 @@
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
-        <div class="text-center">
-            <h3>Filtra i Posts</h3>
-            <form action="" method="get">
-                <div>
-                    <label for="search-string"></label>
-                </div>
-            </form>
-        </div>
 
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Text</th>
-                    <th scope="col">Categoria</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
                 </tr>
             </thead>
 
             <tbody class="table-group-divider">
-                @foreach ($posts as $post)
+                @foreach ($categories as $category)
                     <tr>
-                        <th scope="row">{{ $post->id }}</th>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->category->name }}</td>
-                        <td>{{ $post->postText }}</td>
-                        <td><a href="{{ route('admin.posts.show', $post->slug) }}">Post</a></td>
+                        <th scope="row">{{ $category->id }}</th>
+                        <td>{{ $category->name }}</td>
+                        <td><a href="{{ route('admin.categories.show', $category->id) }}">category</a></td>
                         <td>
-                            @if (Auth::user()->id === $post->user_id)
-                                <a href="{{ route('admin.posts.edit', $post->slug) }}">Modifica Post</a>
+                            @if (Auth::user()->id === $category->user_id)
+                                <a href="{{ route('admin.categories.edit', $category->id) }}">Modifica category</a>
                             @endif
                         </td>
                         <td>
-                            @if (Auth::user()->id === $post->user_id)
-                                <button data-id="{{ $post->slug }}" onclick="event.stopPropagation()"
-                                    class="my_btn_link btn-delete">Elimina Post</button>
+                            @if (Auth::user()->id === $category->user_id)
+                                <button data-id="{{ $category->id }}" onclick="event.stopPropagation()"
+                                    class="my_btn_link btn-delete">Elimina category</button>
                             @endif
                         </td>
                     </tr>
@@ -57,15 +46,11 @@
 
         </table>
 
-        <div class="text-center d-flex justify-content-center mt-4">
-            {{ $posts->links() }}
-        </div>
-
         <section id="confirmation-overlay" class="overlay d-none">
             <div class="popup">
                 <h2>Se continui l'elemento verrà eliminato</h2>
                 <div class="d-flex justify-content-evenly mt-5">
-                    <form method="POST" data-base="{{ route('admin.posts.index') }}">
+                    <form method="POST" data-base="{{ route('admin.categories.index') }}">
                         @csrf
                         @method('DELETE')
                         <button onclick="event.stopPropagation()" class="bg-danger text-white p-2 ">ELIMINA

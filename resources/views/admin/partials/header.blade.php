@@ -15,6 +15,11 @@
                         Page</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                        href="{{ route('admin.categories.index') }}">Listing
+                        Category</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('admin.myposts') }}">My Posts</a>
                 </li>
                 <li class="nav-item">

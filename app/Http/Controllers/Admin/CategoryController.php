@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('admin.category.index', compact('categories'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -35,7 +37,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:20',
+            'description',
+        ]);
+
+        $formData = $request->all();
+        $newCategory = Category::create($formData);
+        return redirect()->route('admin.category.show', $newCategory);
     }
 
     /**
@@ -46,7 +55,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.category.show', [
+            'pageTitle' => $category->name,
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -57,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit');
     }
 
     /**
@@ -69,7 +81,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:20',
+            'description',
+        ]);
+
+        $formData = $request->all();
+        $category->update($formData);
+        return redirect()->route('admin.category.show');
     }
 
     /**
@@ -80,6 +99,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return view('admin.categories.index');
     }
 }

@@ -29,22 +29,22 @@
             </div>
         </div>
 
+        <div class="form-group row mt-3 mb-3">
+            <div class="col-4">
+                <input class="btn-slugger" type="button" value="Genera il tuo slug">
+            </div>
+        </div>
+
         <select class="mt-3 mb-3" name="category_id" id="category_id">
             <option selected value="">Select a Category</option>
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}">
-                    {{ $category->name }}</option>
+                <option value="{{ $category->id }}">{{ $category->name }}</option> 
             @endforeach
         </select>
         @error('category')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
-        <div class="form-group row mt-3 mb-3">
-            <div class="col-4">
-                <input class="btn-slugger" type="button" value="Genera il tuo slug">
-            </div>
-        </div>
 
         <div class="form-group row">
             <label for="postText" class="col-sm-2 col-form-label">Testo del post</label>
